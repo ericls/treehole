@@ -19,6 +19,12 @@ defmodule Treehole.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", Treehole do
+      pipe_through :api
+
+      resources "/notes", NoteController
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Treehole do
   #   pipe_through :api
