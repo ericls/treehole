@@ -49,8 +49,18 @@ exports.config = {
 
   // Configure your plugins
   plugins: {
+    sass: {
+      options: {
+        includePaths: ["node_modules/bootstrap-sass/assets/stylesheets"],
+        precision: 8
+      }
+    },
+    copycat: {
+      "fonts": ["node_modules/bootstrap-sass/assets/fonts/bootstrap"]
+    },
+    autoReload: {enabled: false},
     babel: {
-      // Do not use ES6 compiler in vendor code
+      presets: ["es2015", "react"],
       ignore: [/web\/static\/vendor/]
     }
   },
@@ -65,6 +75,13 @@ exports.config = {
     enabled: true,
     // Whitelist the npm deps to be pulled in as front-end assets.
     // All other deps in package.json will be excluded from the bundle.
-    whitelist: ["phoenix", "phoenix_html"]
+    whitelist: [
+      "phoenix", "phoenix_html", "react",
+      "react-dom", "redux", "react-redux", "jquery", "bootstrap-sass"
+    ],
+    globals: {
+      $: 'jquery',
+      jQuery: 'jquery'
+    }
   }
 };
