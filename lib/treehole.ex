@@ -5,6 +5,7 @@ defmodule Treehole do
   # for more information on OTP Applications
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
+    :ets.new(:treehole_ets, [:set, :named_table, :public, read_concurrency: true])
 
     children = [
       # Start the endpoint when the application starts

@@ -1,6 +1,8 @@
 defmodule Treehole.Note do
   use Treehole.Web, :model
 
+  alias Treehole.Utils
+
   @primary_key {:slug, :string, []}
   @derive {Phoenix.Param, key: :slug}
   schema "notes" do
@@ -9,7 +11,7 @@ defmodule Treehole.Note do
     timestamps
   end
 
-  @required_fields ~w(slug content)
+  @required_fields ~w(content)
   @optional_fields ~w()
 
   @doc """

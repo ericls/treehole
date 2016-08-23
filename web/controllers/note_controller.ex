@@ -2,6 +2,7 @@ defmodule Treehole.NoteController do
   use Treehole.Web, :controller
 
   alias Treehole.Note
+  alias Treehole.Utils
 
   plug :scrub_params, "note" when action in [:create, :update]
 
@@ -10,8 +11,24 @@ defmodule Treehole.NoteController do
     render(conn, "index.json", notes: notes)
   end
 
-  def create(conn, %{"note" => note_params}) do
-    changeset = Note.changeset(%Note{}, note_params)
+  def create(conn, %{"note" => %{"content"=>content}}) do
+    changeset = Note.changeset(%Note{slug: Utils.generate_valid_slug}, %{"content"=>content})
+
+    case Repo.insert(changeset) do
+      {:ok, note} ->
+        conn
+        |> put_status(:created)
+        |> put_resp_header("location", note_path(conn, :show, note))
+        |> render("show.json", note: note)
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(Treehole.ChangesetView, "error.json", changeset: changeset)
+    end
+  end
+
+  def create(conn, %{"note" => _}) do
+    changeset = Note.changeset(%Note{},%{})
 
     case Repo.insert(changeset) do
       {:ok, note} ->
