@@ -77,7 +77,8 @@ exports.config = {
     // All other deps in package.json will be excluded from the bundle.
     whitelist: [
       "phoenix", "phoenix_html", "react",
-      "react-dom", "redux", "react-redux", "jquery", "bootstrap-sass"
+      "react-dom", "redux", "react-redux", "jquery",
+      "bootstrap-sass", "react-router"
     ],
     globals: {
       $: 'jquery',
