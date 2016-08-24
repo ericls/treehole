@@ -22,7 +22,7 @@ defmodule Treehole.Router do
   scope "/api", Treehole do
       pipe_through :api
 
-      resources "/notes", NoteController, only: [:create, :show]
+      resources "/notes", NoteController, only: [:create, :show, :delete]
   end
 
   # Other scopes may use custom stacks.
