@@ -1,0 +1,20 @@
+.editor{
+  @include column-flex();
+  flex-grow: 9;
+  flex-shrink: 9;
+  &--textarea{
+    background: $input-background;
+    border: $input-border;
+    box-shadow: $input-box-shadow;
+    border-radius: $box-radius;
+    resize: none;
+    flex-basis: 78vh;
+    padding: 10px;
+    color: darken($primary-text-color, 20%);
+    font-size: 18px;
+    font-family: Merriweather, Georgia, serif;
+    &:focus {
+      outline: none !important;
+    }
+  }
+}

@@ -1,3 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,400|Merriweather');
+
 $icon-font-path: "/fonts/";
+$primary-text-color: #929292;
+$secondary-text-color: #CACACA;
+$theme-green: #52D186;
+$theme-red: #D15252;
+$input-background: #F7F8FA;
+$input-border: 1px solid #DDDFE4;
+$input-box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.27);
+$box-radius: 8px;
+$body-font: 'Lato', HelveticaNeue-Light;
+$logo-font: 'Lato', HelveticaNeue-Light;
+
+@mixin column-flex() {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin btn-color($color) {
+  color: $color;
+  border: 1px solid $color;
+}
+
 @import "./_modules/editor.scss";
-@import "bootstrap";
+@import "./_modules/header.scss";
+@import "./_modules/footer.scss";
+// @import "bootstrap";
+
+.app-container {
+  font-family: $body-font;
+  font-weight: 100;
+  max-width: 420px;
+  margin: auto;
+  @include column-flex();
+}

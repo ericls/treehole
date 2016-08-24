@@ -1,0 +1,28 @@
+.footer{
+  flex-grow: 1;
+  flex-shrink: 0;
+  &--btn{
+    border-radius: $box-radius;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    text-align: center;
+    height: 28px;
+    font-size: 18px;
+    line-height: 28px;
+    margin: 10px 0;
+    text-decoration: none;
+    &:focus {
+      outline: none !important;
+    }
+    &__green {
+      @include btn-color($theme-green);
+    }
+    &__red {
+      @include btn-color($theme-red);
+    }
+    &__grey {
+      @include btn-color($primary-text-color);
+    }
+  }
+}
