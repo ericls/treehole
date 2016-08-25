@@ -22,9 +22,13 @@ $logo-font: 'Lato', HelveticaNeue-Light;
   border: 1px solid $color;
 }
 
+@import "./normalize.scss";
 @import "./_modules/editor.scss";
 @import "./_modules/header.scss";
 @import "./_modules/footer.scss";
+@import "./_modules/save-modal";
+@import "./_modules/modal";
+@import "./_modules/svg";
 // @import "bootstrap";
 
 .app-container {

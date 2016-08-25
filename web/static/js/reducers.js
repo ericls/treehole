@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { UPDATE_NOTE, UPDATE_NEW_NOTE } from './actions'
+import { UPDATE_NOTE, UPDATE_NEW_NOTE, TOGGLE_SAVE_MODAL, TOGGLE_SAVE_SUCCESS_MODAL} from './actions'
 
 function note(state={content: "", slug: ""}, action) {
   switch (action.type) {
@@ -21,9 +21,31 @@ function newNote(state={content: ""}, action) {
   }
 }
 
+function showSaveModal(state=false, action) {
+  switch (action.type) {
+    case TOGGLE_SAVE_MODAL:
+      return action.show
+      break;
+    default:
+      return state
+  }
+}
+
+function showSaveSuccessModal(state=false, action) {
+  switch (action.type) {
+    case TOGGLE_SAVE_SUCCESS_MODAL:
+      return action.show
+      break;
+    default:
+      return state
+  }
+}
+
 const noteApp = combineReducers({
   note,
-  newNote
+  newNote,
+  showSaveModal,
+  showSaveSuccessModal
 })
 
 export default noteApp

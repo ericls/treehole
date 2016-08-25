@@ -2,7 +2,6 @@
   "repository": {},
   "dependencies": {
     "babel-brunch": "~6.0.0",
-    "bootstrap-sass": "^3.3.7",
     "brunch": "~2.8.2",
     "clean-css-brunch": "~1.8.0",
     "css-brunch": "~1.7.0",
@@ -12,9 +11,11 @@
     "phoenix_html": "file:deps/phoenix_html",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "react-modal-dialog": "^3.0.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.7.0",
     "redux": "^3.5.2",
+    "redux-thunk": "^2.1.0",
     "sass-brunch": "^2.6.3",
     "uglify-js-brunch": "~1.7.0"
   },

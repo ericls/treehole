@@ -49,15 +49,6 @@ exports.config = {
 
   // Configure your plugins
   plugins: {
-    sass: {
-      options: {
-        includePaths: ["node_modules/bootstrap-sass/assets/stylesheets"],
-        precision: 8
-      }
-    },
-    copycat: {
-      "fonts": ["node_modules/bootstrap-sass/assets/fonts/bootstrap"]
-    },
     autoReload: {enabled: false},
     babel: {
       presets: ["es2015", "react"],
@@ -78,7 +69,7 @@ exports.config = {
     whitelist: [
       "phoenix", "phoenix_html", "react",
       "react-dom", "redux", "react-redux", "jquery",
-      "bootstrap-sass", "react-router"
+      "react-router", "normalize-sass"
     ],
     globals: {
       $: 'jquery',

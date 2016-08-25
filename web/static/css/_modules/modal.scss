@@ -1,0 +1,45 @@
+.modal {
+  &--action {
+    margin-top: 10px;
+    text-align: right;
+  }
+  &--btn {
+    font-size: 12px;
+    border-radius: $box-radius;
+    border: none;
+    font-family: $body-font;
+    font-weight: 100;
+    text-transform: capitalize;;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background: none repeat scroll 0 0 transparent;
+    &:focus{
+      outline: none;
+    }
+    &__primary {
+      color: $theme-green;
+    }
+    &__secondary {
+      color: $secondary-text-color;
+    }
+  }
+  &--icon {
+    display: block;
+    margin: auto;
+  }
+  &--title {
+    color: $primary-text-color;
+    font-family: $body-font;
+    font-weight: normal;
+    text-align: center;
+  }
+  &--new-note-address {
+    color: $secondary-text-color;
+    border-bottom: solid 1px $secondary-text-color;
+    padding-bottom: 0.2em;
+  }
+  &--new-note-slug {
+    color: $primary-text-color;
+  }
+}

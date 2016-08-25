@@ -1,15 +1,17 @@
 import "phoenix_html"
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider, connect } from 'react-redux'
 import { Router, Route, browserHistory, IndexRoute, Link } from 'react-router'
+import thunk from 'redux-thunk';
 
 import noteApp from './reducers'
 
 import Editor from './Editor'
+import Footer from './Footer'
 
-let store = createStore(noteApp, window.INIT_STATE)
+let store = createStore(noteApp, window.INIT_STATE, applyMiddleware(thunk))
 
 class App extends React.Component {
   render() {
@@ -23,14 +25,7 @@ class App extends React.Component {
           </h1>
         </header>
         {this.props.children}
-        <footer className="footer">
-          <a
-            href="#"
-            className={`footer--btn footer--btn__${note.content ? "green" : "grey"}`}
-          >
-            save
-          </a>
-        </footer>
+        <Footer />
       </div>
     );
   }
