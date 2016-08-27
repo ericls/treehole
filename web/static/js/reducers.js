@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { UPDATE_NOTE, UPDATE_NEW_NOTE, TOGGLE_SAVE_MODAL, TOGGLE_SAVE_SUCCESS_MODAL} from './actions'
 
-function note(state={content: "", slug: ""}, action) {
+function note(state={content: "", slug: "", raw: ""}, action) {
   switch (action.type) {
     case UPDATE_NOTE:
       return action.note

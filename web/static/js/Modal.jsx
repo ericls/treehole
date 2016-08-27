@@ -16,7 +16,7 @@ class SaveModal extends React.Component {
     this.props.dispatch(toggleSaveModal(false))
   }
   onSave() {
-    this.props.dispatch(createNewNoteAsync(this.props.newNote))
+    this.props.dispatch(createNewNoteAsync(this.props.newNote, this.state.password))
   }
   render() {
     let modal = (
@@ -53,8 +53,8 @@ class SaveSuccessModal extends React.Component {
   }
   render() {
     let modal = (
-      <ModalContainer onClose={this.handleClose}>
-          <ModalDialog className="modal save-success-modal" onClose={this.handleClose}>
+      <ModalContainer>
+          <ModalDialog className="modal save-success-modal">
             {getSuccessIcon("green", "modal--icon modal--icon__success")}
             <p className="modal--title">saved</p>
             <p className="modal--new-note-address">

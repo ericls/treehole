@@ -1,4 +1,5 @@
 import $ from "jquery"
+import sjcl from "sjcl"
 
 export const UPDATE_NOTE = "UPDATE_NOTE"
 export const UPDATE_NEW_NOTE = "UPDATE_NEW_NOTE"
@@ -33,21 +34,22 @@ export function toggleSaveSuccessModal(show) {
   }
 }
 
-export function createNewNoteAsync(data) {
+export function createNewNoteAsync(data, password) {
   return (dispatch) => {
     let { content } = data
     if (!content) {
       return
     }
+    let encryptedContent = sjcl.encrypt(password, content)
     $.ajax({
       url: "/api/notes",
       method: "POST",
-      data: JSON.stringify({"note": {"content": content}}),
+      data: JSON.stringify({"note": {"content": encryptedContent}}),
       contentType: 'application/json; charset=utf-8',
       datatype: "json"
     })
     .done((data) => {
-      dispatch(updateNote(data.data))
+      dispatch(updateNote(Object.assign({}, data.data, {content: ""}, {raw: data.data.content})))
       dispatch(toggleSaveModal(false))
       dispatch(toggleSaveSuccessModal(true))
     })

@@ -69,11 +69,12 @@ exports.config = {
     whitelist: [
       "phoenix", "phoenix_html", "react",
       "react-dom", "redux", "react-redux", "jquery",
-      "react-router", "normalize-sass"
+      "react-router", "normalize-sass", "sjcl"
     ],
     globals: {
       $: 'jquery',
-      jQuery: 'jquery'
+      jQuery: 'jquery',
+      sjcl: 'sjcl'
     }
   }
 };
