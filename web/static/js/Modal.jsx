@@ -1,7 +1,14 @@
 import React from 'react'
 import { connect } from "react-redux"
+import { browserHistory } from "react-router"
 import { ModalContainer, ModalDialog } from 'react-modal-dialog'
-import { toggleSaveModal, toggleSaveSuccessModal, createNewNoteAsync } from './actions'
+import {
+  toggleSaveModal,
+  toggleSaveSuccessModal,
+  createNewNoteAsync,
+  updateNewNote,
+  updateNote
+} from './actions'
 import { getSuccessIcon } from './utils'
 
 
@@ -11,6 +18,10 @@ class SaveModal extends React.Component {
     this.state = {password: ""};
     this.handleClose = this.handleClose.bind(this)
     this.onSave = this.onSave.bind(this)
+    this.onPasswordChange = this.onPasswordChange.bind(this)
+  }
+  onPasswordChange(event) {
+    this.setState({password: event.target.value})
   }
   handleClose() {
     this.props.dispatch(toggleSaveModal(false))
@@ -23,7 +34,7 @@ class SaveModal extends React.Component {
       <ModalContainer onClose={this.handleClose}>
           <ModalDialog className="modal save-modal" onClose={this.handleClose}>
             <label htmlFor="password" className="modal--inpit-label save-modal--password-label">password</label>
-            <input type="password" className="modal--input save-modal--password-input"/>
+            <input type="password" className="modal--input save-modal--password-input" onChange={this.onPasswordChange}/>
             <div className="modal--action">
               <button className="modal--btn modal--btn__secondary" onClick={this.handleClose}>
                 cancel
@@ -47,9 +58,24 @@ class SaveSuccessModal extends React.Component {
   constructor(props) {
     super(props);
     this.handleClose = this.handleClose.bind(this)
+    this.onClickView = this.onClickView.bind(this)
+    this.onClickNew = this.onClickNew.bind(this)
   }
   handleClose() {
     this.props.dispatch(toggleSaveSuccessModal(false))
+  }
+  onClickView() {
+    this.props.dispatch(updateNewNote({content: ""}))
+    this.props.dispatch(updateNote({content: "", slug: "", raw: ""}))
+    this.props.dispatch(toggleSaveSuccessModal(false))
+    browserHistory.push(`/${this.props.note.slug}`)
+  }
+  onClickNew() {
+    this.props.dispatch(updateNewNote({content: ""}))
+    this.props.dispatch(updateNote({content: "", slug: "", raw: ""}))
+    $('textarea').val("")
+    this.props.dispatch(toggleSaveSuccessModal(false))
+    browserHistory.push(`/`)
   }
   render() {
     let modal = (
@@ -61,10 +87,10 @@ class SaveSuccessModal extends React.Component {
               {location.origin}/<span className="modal--new-note-slug">{this.props.note.slug}</span>
             </p>
             <div className="modal--action">
-              <button className="modal--btn modal--btn__secondary">
+              <button className="modal--btn modal--btn__secondary" onClick={this.onClickView}>
                 view
               </button>
-              <button className="modal--btn modal--btn__primary">
+              <button className="modal--btn modal--btn__primary" onClick={this.onClickNew}>
                 new
               </button>
             </div>

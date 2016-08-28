@@ -6,6 +6,13 @@
     font-size: 24px;
     line-height: 28px;
     color: $primary-text-color;
-    font-weight: 100;
+    display: inline-block;
+  }
+  &--subtitle{
+    display: inline-block;
+    float: right;
+    line-height: 28px;
+    font-size: 18px;
+    color: $secondary-text-color;
   }
 }

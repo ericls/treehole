@@ -3,5 +3,8 @@
     &__green {
       stroke: $theme-green;
     }
+    &__grey {
+      stroke: $primary-text-color;
+    }
   }
 }

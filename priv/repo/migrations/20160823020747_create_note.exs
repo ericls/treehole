@@ -4,7 +4,7 @@ defmodule Treehole.Repo.Migrations.CreateNote do
   def change do
     create table(:notes, primary_key: false) do
       add :slug, :string, primary_key: true
-      add :content, :string
+      add :content, :text
 
       timestamps
     end

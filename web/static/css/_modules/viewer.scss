@@ -1,0 +1,70 @@
+.viewer{
+  @include column-flex();
+  flex-grow: 9;
+  flex-shrink: 9;
+  flex-basis: 78vh;
+  border: $input-border;
+  border-radius: $box-radius;
+  padding: 10px;
+  &--content-lock-icon {
+    display: block;
+    text-align: center;
+  }
+  &--password-input {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    background: $input-background;
+    border: $input-border;
+    box-shadow: $input-box-shadow;
+    border-radius: $box-radius;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    &:focus {
+      outline: none;
+    }
+  }
+  &--content{
+    margin: 0;
+    border: none;
+    resize: none;
+    flex-basis: 78vh;
+    padding: 10px;
+    color: darken($primary-text-color, 20%);
+    font-size: 18px;
+    font-family: Merriweather, Georgia, serif;
+    &:focus {
+      outline: none !important;
+    }
+  }
+  &--btn{
+    border-radius: $box-radius;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    text-align: center;
+    height: 28px;
+    font-size: 18px;
+    margin: 10px 0;
+    text-decoration: none;
+    background: none repeat scroll 0 0 transparent;
+    &:focus {
+      outline: none !important;
+    }
+    &__green {
+      @include btn-color($theme-green);
+    }
+    &__grey {
+      @include btn-color($primary-text-color);
+    }
+  }
+  &--not-found{
+    text-align: center;
+  }
+}
+
+
+.viewer__centred {
+  align-items: center;
+  justify-content: center;
+}
