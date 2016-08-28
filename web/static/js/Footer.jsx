@@ -6,7 +6,8 @@ import {
   toggleSaveModal,
   toggleSaveSuccessModal,
   updateNote,
-  deleteNoteAsync
+  deleteNoteAsync,
+  toggleDeleteModal
 } from "./actions"
 import { SaveSuccessModal } from "./Modal"
 
@@ -29,12 +30,7 @@ class Footer extends React.Component {
     browserHistory.push("/")
   }
   onClickDelete() {
-    this.props.dispatch(deleteNoteAsync(this.props.note.slug))
-    .then(
-      () => {
-        browserHistory.push("/")
-      }
-    )
+    this.props.dispatch(toggleDeleteModal(true))
   }
   render() {
     let note = this.props.note
@@ -91,7 +87,8 @@ Footer = connect((state)=>{
     newNote: state.newNote,
     note: state.note,
     showSaveModal: state.showSaveModal,
-    showSaveSuccessModal: state.showSaveSuccessModal
+    showSaveSuccessModal: state.showSaveSuccessModal,
+    showDeleteModal: state.showDeleteModal
   }
 })(Footer)
 

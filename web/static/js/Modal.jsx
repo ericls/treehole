@@ -7,15 +7,17 @@ import {
   toggleSaveSuccessModal,
   createNewNoteAsync,
   updateNewNote,
-  updateNote
+  updateNote,
+  deleteNoteAsync,
+  toggleDeleteModal
 } from './actions'
 import { getSuccessIcon } from './utils'
 
 
 class SaveModal extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {password: ""};
+    super(props)
+    this.state = {password: ""}
     this.handleClose = this.handleClose.bind(this)
     this.onSave = this.onSave.bind(this)
     this.onPasswordChange = this.onPasswordChange.bind(this)
@@ -56,7 +58,7 @@ class SaveModal extends React.Component {
 
 class SaveSuccessModal extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.handleClose = this.handleClose.bind(this)
     this.onClickView = this.onClickView.bind(this)
     this.onClickNew = this.onClickNew.bind(this)
@@ -105,6 +107,49 @@ class SaveSuccessModal extends React.Component {
   }
 }
 
+class DeleteConfirmModal extends React.Component {
+  constructor(props) {
+    super(props)
+    this.onClickConfirm = this.onClickConfirm.bind(this)
+    this.handleClose = this.handleClose.bind(this)
+  }
+  onClickConfirm() {
+    this.props.dispatch(deleteNoteAsync(this.props.note.slug))
+    .then(
+      () => {
+        this.props.dispatch(toggleDeleteModal(false))
+        browserHistory.push("/")
+      }
+    )
+  }
+  handleClose() {
+    this.props.dispatch(toggleDeleteModal(false))
+  }
+  render() {
+    console.log("here")
+    let modal = (
+      <ModalContainer onClose={this.handleClose}>
+          <ModalDialog className="modal save-success-modal" onClose={this.handleClose}>
+            <p className="modal--title">Delete?</p>
+            <div className="modal--action">
+              <button className="modal--btn modal--btn__secondary" onClick={this.handleClose}>
+                cancel
+              </button>
+              <button className="modal--btn modal--btn__primary" onClick={this.onClickConfirm}>
+                confirm
+              </button>
+            </div>
+          </ModalDialog>
+        </ModalContainer>
+    )
+    return (
+      <div>
+        {this.props.showDeleteModal ? modal : null}
+      </div>
+    );
+  }
+}
+
 SaveModal = connect((state)=>{
   return {
     showSaveModal: state.showSaveModal,
@@ -119,4 +164,11 @@ SaveSuccessModal = connect((state)=>{
   }
 })(SaveSuccessModal)
 
-export {SaveModal, SaveSuccessModal}
+DeleteConfirmModal = connect((state)=>{
+  return {
+    showDeleteModal: state.showDeleteModal,
+    note: state.note
+  }
+})(DeleteConfirmModal)
+
+export {SaveModal, SaveSuccessModal, DeleteConfirmModal}

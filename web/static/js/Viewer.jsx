@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from "react-redux"
 import { getNoteAsync, updateNote } from "./actions"
 import { getLockIcon, isJSON } from './utils'
+import { DeleteConfirmModal } from "./Modal"
 
 class Viewer extends React.Component {
   constructor(props) {
@@ -51,8 +52,11 @@ class Viewer extends React.Component {
         {
           note.content
           ?
-          <textarea className="viewer--content" name="note" readOnly value={note.content}>
-          </textarea>
+          [
+            <textarea key="viewerContent" className="viewer--content" name="note" readOnly value={note.content}>
+            </textarea>,
+            <DeleteConfirmModal key="deleteConfirmModal" />
+          ]
           :
           <div className="viewer--content-lock">
             <div className="viewer--content-lock-icon">

@@ -7,6 +7,7 @@ export const UPDATE_NOTE = "UPDATE_NOTE"
 export const UPDATE_NEW_NOTE = "UPDATE_NEW_NOTE"
 export const TOGGLE_SAVE_MODAL = "TOGGLE_SAVE_MODAL"
 export const TOGGLE_SAVE_SUCCESS_MODAL = "TOGGLE_SAVE_SUCCESS_MODAL"
+export const TOGGLE_DELETE_MODAL = "TOGGLE_DELETE_MODAL"
 
 export function updateNote(data) {
   return {
@@ -32,6 +33,13 @@ export function toggleSaveModal(show) {
 export function toggleSaveSuccessModal(show) {
   return {
     type: TOGGLE_SAVE_SUCCESS_MODAL,
+    show: show
+  }
+}
+
+export function toggleDeleteModal(show) {
+  return {
+    type: TOGGLE_DELETE_MODAL,
     show: show
   }
 }
