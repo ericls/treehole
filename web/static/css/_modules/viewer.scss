@@ -29,10 +29,10 @@
     border: none;
     resize: none;
     flex-basis: 78vh;
-    padding: 10px;
     color: darken($primary-text-color, 20%);
     font-size: 18px;
     font-family: Merriweather, Georgia, serif;
+    background-color: $input-background;
     &:focus {
       outline: none !important;
     }
@@ -67,4 +67,9 @@
 .viewer__centred {
   align-items: center;
   justify-content: center;
+}
+
+.viewer__with-content {
+  background-color: $input-background;
+  box-shadow: $input-box-shadow;
 }

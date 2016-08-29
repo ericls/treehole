@@ -48,7 +48,7 @@ class Viewer extends React.Component {
       )
     }
     return (
-      <div className={`viewer ${note.content ? "" : "viewer__centred"}`}>
+      <div className={`viewer ${note.content ? "viewer__with-content" : "viewer__centred"}`}>
         {
           note.content
           ?
